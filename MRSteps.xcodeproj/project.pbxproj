@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F1B100000000000000000001 /* MRStepsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000001 /* MRStepsApp.swift */; };
+		F1B100000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000002 /* ContentView.swift */; };
+		F1B100000000000000000003 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000003 /* GameScene.swift */; };
+		F1B100000000000000000004 /* PixelArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000004 /* PixelArt.swift */; };
+		F1B100000000000000000005 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000005 /* Theme.swift */; };
+		F1B100000000000000000006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000006 /* Assets.xcassets */; };
+		F1B100000000000000000007 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1A100000000000000000007 /* SpriteKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F1A100000000000000000001 /* MRStepsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MRStepsApp.swift; sourceTree = "<group>"; };
+		F1A100000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F1A100000000000000000003 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		F1A100000000000000000004 /* PixelArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelArt.swift; sourceTree = "<group>"; };
+		F1A100000000000000000005 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		F1A100000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F1A100000000000000000007 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		F1D100000000000000000002 /* MR STEPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MR STEPS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1E100000000000000000003 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B100000000000000000007 /* SpriteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F1C100000000000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1D100000000000000000002 /* MR STEPS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1C100000000000000000002 /* MRSteps */ = {
+			isa = PBXGroup;
+			children = (
+				F1A100000000000000000001 /* MRStepsApp.swift */,
+				F1A100000000000000000002 /* ContentView.swift */,
+				F1A100000000000000000003 /* GameScene.swift */,
+				F1A100000000000000000004 /* PixelArt.swift */,
+				F1A100000000000000000005 /* Theme.swift */,
+				F1A100000000000000000006 /* Assets.xcassets */,
+			);
+			path = MRSteps;
+			sourceTree = "<group>";
+		};
+		F1C100000000000000000003 = {
+			isa = PBXGroup;
+			children = (
+				F1C100000000000000000002 /* MRSteps */,
+				F1C100000000000000000001 /* Products */,
+				F1C100000000000000000004 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F1C100000000000000000004 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1A100000000000000000007 /* SpriteKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F1D100000000000000000003 /* MRSteps */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1F100000000000000000006 /* Build configuration list for PBXNativeTarget "MRSteps" */;
+			buildPhases = (
+				F1E100000000000000000001 /* Sources */,
+				F1E100000000000000000003 /* Frameworks */,
+				F1E100000000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MRSteps;
+			productName = MRSteps;
+			productReference = F1D100000000000000000002 /* MR STEPS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1D100000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					F1D100000000000000000003 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = F1F100000000000000000005 /* Build configuration list for PBXProject "MRSteps" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F1C100000000000000000003;
+			productRefGroup = F1C100000000000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1D100000000000000000003 /* MRSteps */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1E100000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B100000000000000000006 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1E100000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1B100000000000000000001 /* MRStepsApp.swift in Sources */,
+				F1B100000000000000000002 /* ContentView.swift in Sources */,
+				F1B100000000000000000003 /* GameScene.swift in Sources */,
+				F1B100000000000000000004 /* PixelArt.swift in Sources */,
+				F1B100000000000000000005 /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F1F100000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F1F100000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F1F100000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7J2M2J7NQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "MR STEPS";
+				INFOPLIST_KEY_LSRequiresIPhoneOS = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrsteps.game;
+				PRODUCT_NAME = "MR STEPS";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F1F100000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7J2M2J7NQ;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "MR STEPS";
+				INFOPLIST_KEY_LSRequiresIPhoneOS = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mrsteps.game;
+				PRODUCT_NAME = "MR STEPS";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1F100000000000000000005 /* Build configuration list for PBXProject "MRSteps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1F100000000000000000001 /* Debug */,
+				F1F100000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1F100000000000000000006 /* Build configuration list for PBXNativeTarget "MRSteps" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1F100000000000000000003 /* Debug */,
+				F1F100000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1D100000000000000000001 /* Project object */;
+}
