@@ -96,39 +96,9 @@ enum PixelArt {
         "7": Theme.shoe
     ]
 
-    static func step() -> SKTexture {
-        var rows: [String] = []
-        let w = Layout.stepPixelW
-        let h = Layout.stepPixelH
-        for y in 0..<h {
-            var line = ""
-            for x in 0..<w {
-                let isEdge = x == 0 || y == 0 || x == w - 1 || y == h - 1
-                let grout = x % 8 == 0 || y == 4 || y == 9
-                if isEdge {
-                    line.append("D")
-                } else if y == 1 {
-                    line.append("H")
-                } else if grout {
-                    line.append("G")
-                } else if y < 5 {
-                    line.append("T")
-                } else if x > w - 5 {
-                    line.append("D")
-                } else {
-                    line.append("M")
-                }
-            }
-            rows.append(line)
-        }
-        return texture(cols: w, rows: h, pixels: rows, colors: [
-            "H": Theme.stepHighlight,
-            "T": Theme.stepTop,
-            "M": Theme.stepMid,
-            "G": Theme.stepGrout,
-            "D": Theme.stepDark
-        ])
-    }
+    static let step = makeIsometricStep()
+    static let shadow = makeShadow()
+    static let moon = makeMoon()
 
     static func cloud() -> SKTexture {
         texture(cols: 22, rows: 8, pixels: [
@@ -197,6 +167,179 @@ enum PixelArt {
         }
 
         return texture(cols: cols, rows: rows, pixels: grid.map { String($0) }, colors: ["1": Theme.cream])
+    }
+
+    static func skyGradient(size: CGSize) -> SKTexture {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        format.opaque = true
+        let image = UIGraphicsImageRenderer(size: size, format: format).image { ctx in
+            let colors = [Theme.skyTop.cgColor, Theme.skyMid.cgColor, Theme.skyBottom.cgColor] as CFArray
+            var locations: [CGFloat] = [0, 0.48, 1]
+            let space = CGColorSpaceCreateDeviceRGB()
+            guard let gradient = CGGradient(colorsSpace: space, colors: colors, locations: &locations) else { return }
+            ctx.cgContext.drawLinearGradient(
+                gradient,
+                start: CGPoint(x: 0, y: 0),
+                end: CGPoint(x: 0, y: size.height),
+                options: []
+            )
+        }
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .linear
+        return texture
+    }
+
+    static func vignette(size: CGSize) -> SKTexture {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        format.opaque = false
+        let image = UIGraphicsImageRenderer(size: size, format: format).image { ctx in
+            let space = CGColorSpaceCreateDeviceRGB()
+            let colors = [
+                SKColor.clear.cgColor,
+                SKColor(white: 0, alpha: 0.08).cgColor,
+                SKColor(white: 0, alpha: 0.55).cgColor
+            ] as CFArray
+            var locations: [CGFloat] = [0.35, 0.7, 1]
+            guard let gradient = CGGradient(colorsSpace: space, colors: colors, locations: &locations) else { return }
+            let center = CGPoint(x: size.width / 2, y: size.height * 0.46)
+            ctx.cgContext.drawRadialGradient(
+                gradient,
+                startCenter: center,
+                startRadius: 0,
+                endCenter: center,
+                endRadius: hypot(size.width, size.height) * 0.62,
+                options: .drawsAfterEndLocation
+            )
+        }
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .linear
+        return texture
+    }
+
+    private static func makeIsometricStep() -> SKTexture {
+        let sx = 16
+        let sy = 9
+        let sz = 16
+        let pad = 2
+        let width = sx + sz + pad * 2
+        let pyMin = 1 - sy
+        let pyMax = (sx + sz - 2) / 2
+        let originRow = pyMax + pad
+        let height = originRow - pyMin + pad + 1
+        var pix = Array(repeating: Array(repeating: Optional<SKColor>.none, count: width), count: height)
+        let ox = sz + pad - 1
+
+        func put(_ x: Int, _ y: Int, _ color: SKColor) {
+            guard y >= 0, y < height, x >= 0, x < width else { return }
+            pix[y][x] = color
+        }
+
+        for z in (0..<sz).reversed() {
+            for x in 0..<sx {
+                for y in 0..<sy {
+                    let surface = x == 0 || x == sx - 1 || y == 0 || y == sy - 1 || z == 0 || z == sz - 1
+                    guard surface else { continue }
+
+                    let color: SKColor
+                    if y == sy - 1 {
+                        let grout = x % 4 == 0 || z % 4 == 0
+                        let rim = x + z < 6
+                        if grout {
+                            color = Theme.stepGrout
+                        } else if rim {
+                            color = Theme.stepHighlight
+                        } else if (x + z) % 2 == 0 {
+                            color = Theme.stepTop
+                        } else {
+                            color = SKColor(red: 0.90, green: 0.60, blue: 0.36, alpha: 1)
+                        }
+                    } else if x == sx - 1 {
+                        color = y < 3 ? Theme.stepMid : Theme.stepSide
+                    } else if z == sz - 1 {
+                        color = y < 3 ? Theme.stepSide : Theme.stepDark
+                    } else if x == 0 {
+                        color = Theme.stepDark
+                    } else {
+                        color = Theme.stepDark
+                    }
+
+                    let px = ox + x - z
+                    let py = (x + z) / 2 - y
+                    let row = originRow - py
+                    put(px, row, color)
+                }
+            }
+        }
+
+        for y in 0..<height {
+            for x in 0..<width {
+                guard pix[y][x] != nil else { continue }
+                var edge = false
+                for (dx, dy) in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
+                    let nx = x + dx
+                    let ny = y + dy
+                    if nx < 0 || ny < 0 || nx >= width || ny >= height || pix[ny][nx] == nil {
+                        edge = true
+                        break
+                    }
+                }
+                if edge {
+                    pix[y][x] = Theme.ink
+                }
+            }
+        }
+
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        format.opaque = false
+        let image = UIGraphicsImageRenderer(size: CGSize(width: width, height: height), format: format).image { ctx in
+            for y in 0..<height {
+                for x in 0..<width {
+                    guard let color = pix[y][x] else { continue }
+                    ctx.cgContext.setFillColor(color.cgColor)
+                    ctx.cgContext.fill(CGRect(x: x, y: y, width: 1, height: 1))
+                }
+            }
+        }
+        let texture = SKTexture(image: image)
+        texture.filteringMode = .nearest
+        return texture
+    }
+
+    private static func makeShadow() -> SKTexture {
+        texture(cols: 18, rows: 8, pixels: [
+            "..................",
+            ".....11111111.....",
+            "...111111111111...",
+            "..11111111111111..",
+            "...111111111111...",
+            ".....11111111.....",
+            "..................",
+            ".................."
+        ], colors: ["1": Theme.stepShadow])
+    }
+
+    private static func makeMoon() -> SKTexture {
+        texture(cols: 16, rows: 16, pixels: [
+            ".....111111.....",
+            "...1111111111...",
+            "..111111111111..",
+            ".11111111111111.",
+            ".11111111111111.",
+            "1111111111111111",
+            "11111..111111111",
+            "1111....11111111",
+            "1111....11111111",
+            "11111..111111111",
+            "1111111111111111",
+            ".11111111111111.",
+            ".11111111111111.",
+            "..111111111111..",
+            "...1111111111...",
+            ".....111111....."
+        ], colors: ["1": Theme.moon])
     }
 
     private static let font: [Character: [String]] = [
