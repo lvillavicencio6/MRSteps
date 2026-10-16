@@ -17,7 +17,6 @@ final class GameScene: SKScene {
         let node: SKSpriteNode
         let x: CGFloat
         let worldY: CGFloat
-        let cracked: Bool
     }
 
     private var state: State = .menu
@@ -223,25 +222,24 @@ final class GameScene: SKScene {
         steps.removeAll()
         world.position = CGPoint(x: size.width / 2, y: homeY)
         var x: CGFloat = 0
-        addStep(x: x, worldY: 0, cracked: false)
+        addStep(x: x, worldY: 0)
         for i in 1..<8 {
             let side = pickNextSide(from: x)
             x = clampedX(x + side.sign * Layout.lateral)
-            let cracked = !preview && i > 2 && Int.random(in: 0...10) == 0
-            addStep(x: x, worldY: CGFloat(i) * Layout.stepSpacing, cracked: cracked)
+            addStep(x: x, worldY: CGFloat(i) * Layout.stepSpacing)
         }
         if steps.count > 1 {
             nextSide = steps[1].x >= steps[0].x ? .right : .left
         }
     }
 
-    private func addStep(x: CGFloat, worldY: CGFloat, cracked: Bool) {
-        let node = SKSpriteNode(texture: PixelArt.step(cracked: cracked))
+    private func addStep(x: CGFloat, worldY: CGFloat) {
+        let node = SKSpriteNode(texture: PixelArt.step())
         node.setScale(Layout.artScale)
         node.position = CGPoint(x: x, y: worldY)
         node.zPosition = 2
         world.addChild(node)
-        steps.append(Step(node: node, x: x, worldY: worldY, cracked: cracked))
+        steps.append(Step(node: node, x: x, worldY: worldY))
     }
 
     private func spawnCharacter(idle: Bool) {
@@ -375,11 +373,6 @@ final class GameScene: SKScene {
         Haptics.land()
         puff()
 
-        if step.cracked {
-            fail(reason: "CRACKED STEP")
-            return
-        }
-
         let last = steps.last!
         var newX = last.x + pickNextSide(from: last.x).sign * Layout.lateral
         newX = clampedX(newX)
@@ -389,7 +382,7 @@ final class GameScene: SKScene {
                 newX = clampedX(last.x + (last.x >= prev ? -Layout.lateral : Layout.lateral))
             }
         }
-        addStep(x: newX, worldY: last.worldY + Layout.stepSpacing, cracked: score > 8 && Int.random(in: 0...12) == 0)
+        addStep(x: newX, worldY: last.worldY + Layout.stepSpacing)
 
         if let upcoming = steps[safe: currentIndex + 1] {
             nextSide = upcoming.x >= step.x ? .right : .left

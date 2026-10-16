@@ -96,7 +96,7 @@ enum PixelArt {
         "7": Theme.shoe
     ]
 
-    static func step(cracked: Bool = false) -> SKTexture {
+    static func step() -> SKTexture {
         var rows: [String] = []
         let w = Layout.stepPixelW
         let h = Layout.stepPixelH
@@ -105,8 +105,7 @@ enum PixelArt {
             for x in 0..<w {
                 let isEdge = x == 0 || y == 0 || x == w - 1 || y == h - 1
                 let grout = x % 8 == 0 || y == 4 || y == 9
-                let crack = cracked && ((x + y * 3) % 11 == 0) && y > 2 && y < 12
-                if isEdge || crack {
+                if isEdge {
                     line.append("D")
                 } else if y == 1 {
                     line.append("H")
